@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { HubConnectionBuilder } from '@microsoft/signalr';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule],
   selector: 'test-esbuild-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'test-esbuild';
+  private neverCalledButTriggerBuildError(): void {
+    new HubConnectionBuilder().withUrl('').build();
+  }
 }
